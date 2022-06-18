@@ -1,0 +1,41 @@
+connect to hdfs server:
+ssh -i /Users/saisanthoshvuturi/internship\ at\ CDS/Bigdata\ course/hirwuser2786/hirwuser2786.pem hirwuser2786@54.85.143.224
+
+files in my folder:
+hadoop fs -ls /user/hirwuser2786/
+
+copy the whole working project directory to local system  form hadoop 
+scp -r -i hirwuser2786.pem hirwuser2786@54.85.143.224:/hirw-workshop .
+
+command to view the content of the csv
+hadoop fs -cat /user/hirwuser2786/hdfstest/dwp-payments-april10.csv
+
+command to make a new directory in hadoop 
+hadoop fs -mkdir hdfstest2
+
+move file from one folder to another 
+hadoop fs -mv /user/hirwuser2786/hdfstest/dwp-payments-april10.csv /user/hirwuser2786/hdfstest2/
+
+copy file from one location to another location
+hadoop fs -cp /user/hirwuser2786/hdfstest2/dwp-payments-april10.csv /user/hirwuser2786/hdfstest/
+
+check the replication factor in hdfs (by default it is 3)
+hadoop fs -ls /user/hirwuser2786/hdfstest/ 
+
+change the replcaition factor 
+hadoop fs -Ddfs.replication=2 -cp /user/hirwuser2786/hdfstest2/dwp-payments-april10.csv /user/hirwuser2786/hdfstest2/test_with_rep2.csv
+
+check the replcaition factor again 
+hadoop fs -ls /user/hirwuser2786/hdfstest2/
+
+change the permissions
+hadoop fs -chmod 777 /user/hirwuser2786/hdfstest2/test_with_rep2.csv
+
+get the file to local from hdfs
+hadoop fs -copyToLocal /user/hirwuser2786/hdfstest2/test_with_rep2.csv .
+
+remove file from hdfs
+hadoop fs -rm /user/hirwuser2786/hdfstest2/test_with_rep2.csv
+
+remove files recursevely from folder in hdfs
+hadoop fs -rm -r /user/hirwuser2786/hdfstest2/
