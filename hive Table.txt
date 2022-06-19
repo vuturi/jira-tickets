@@ -12,7 +12,7 @@ ymd STRING,
 price_open FLOAT,
 price_high FLOAT,
 price_low FLOAT,
-price_close FLOAT,
+price_close FLOAT, 
 volume INT,
 price_adj_close FLOAT)
 
@@ -24,3 +24,12 @@ LOCATION '/user/hirw/input/stocks';
 
 SELECT * FROM stocks_tb
 LIMIT 100;
+
+#Drop database but it should be empty 
+DROP DATABASE stocks_db;
+
+#Drop table 
+DROP TABLE stocks;
+
+#Drop database and table in it using CASCADE
+DROP DATABASE stocks_db CASCADE;
